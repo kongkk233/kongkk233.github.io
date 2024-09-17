@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>HelloWorld</category>
+      </categories>
+      <tags>
+        <tag>HelloWorld</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tmux使用技巧</title>
+    <url>/posts/6c421b8a/</url>
+    <content><![CDATA[<p>tmux 是一个终端复用工具，允许你在一个单一终端会话中创建、管理多个窗口和面板，非常适合在服务器或开发环境中保持会话持久性。下面是tmux的基本使用方法介绍。</p>
+<span id="more"></span>
+
+<p>我的hexo管理就是在tmux上完成的，如下图所示。</p>
+<p><img src="https://image-1301795790.cos.ap-shanghai.myqcloud.com/typora/image-20240917121748214.png" alt="image-20240917121748214"></p>
+<p>左上角的窗格负责hexo的调试和部署，右上角的窗格负责hexo的config，左下角的窗格负责主题next的config，右下角窗格负责笔记的管理。这样的布局大大方便了博客的管理，所以这篇博客简单介绍tmux的使用。</p>
+<h1 id="tmux的安装"><a href="#tmux的安装" class="headerlink" title="tmux的安装"></a>tmux的安装</h1><p>在mac生产环境下，tmux的安装很简单，使用brew进行安装即可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></table></figure>
+
+<h1 id="tmux快捷键"><a href="#tmux快捷键" class="headerlink" title="tmux快捷键"></a>tmux快捷键</h1><p>在tmux中，有几个不同的概念，分别是窗格，窗口以及会话。窗格和窗口都是用快捷键（<code>Ctrl+B</code>）实现的。</p>
+<blockquote>
+<p>提示：先按下<code>Ctrl+B</code>，再松开<code>Ctrl+B</code>，再按下相应的操作按键</p>
+</blockquote>
+<ul>
+<li><p>窗格快捷键</p>
+<table>
+<thead>
+<tr>
+<th align="center">Ctrl+B之后的组合键</th>
+<th align="center">快捷键作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">%</td>
+<td align="center">左右平分出两个窗格</td>
+</tr>
+<tr>
+<td align="center">“</td>
+<td align="center">上下平分出两个窗格</td>
+</tr>
+<tr>
+<td align="center">x</td>
+<td align="center">关闭当前窗格</td>
+</tr>
+<tr>
+<td align="center">{</td>
+<td align="center">当前窗格前移</td>
+</tr>
+<tr>
+<td align="center">}</td>
+<td align="center">当前窗格后移</td>
+</tr>
+<tr>
+<td align="center">;</td>
+<td align="center">选择上次使用的窗格</td>
+</tr>
+<tr>
+<td align="center">o</td>
+<td align="center">选择下一个窗格，也可以使用上下左右方向键来选择</td>
+</tr>
+<tr>
+<td align="center">Space</td>
+<td align="center">切换窗格布局，tmux 内置了五种窗格布局，也可以通过 ⌥1 至 ⌥5来切换</td>
+</tr>
+<tr>
+<td align="center">z</td>
+<td align="center">最大化当前窗格，再次执行可恢复原来大小</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td align="center">显示所有窗格的序号，在序号出现期间按下对应的数字，即可跳转至对应的窗格</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>窗口快捷键</p>
+<table>
+<thead>
+<tr>
+<th align="center">Ctrl+B之后的组合键</th>
+<th align="center">快捷键作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">c</td>
+<td align="center">新建窗口，此时当前窗口会切换至新窗口，不影响原有窗口的状态</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="center">切换至上一窗口</td>
+</tr>
+<tr>
+<td align="center">n</td>
+<td align="center">切换至下一窗口</td>
+</tr>
+<tr>
+<td align="center">w</td>
+<td align="center">窗口列表选择，注意 macOS 下使用 ⌃p 和 ⌃n 进行上下选择</td>
+</tr>
+<tr>
+<td align="center">&amp;</td>
+<td align="center">关闭当前窗口</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td align="center">重命名窗口，可以使用中文，重命名后能在 tmux 状态栏更快速的识别窗口 id</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">选切换至 0 号窗口，使用其他数字 id 切换至对应窗口</td>
+</tr>
+<tr>
+<td align="center">f</td>
+<td align="center">根据窗口名搜索选择窗口，可模糊匹配#</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>会话管理</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux new -s foo 			<span class="comment"># 新建名称为 foo 的会话</span></span><br><span class="line">tmux <span class="built_in">ls</span> 					<span class="comment"># 列出所有 tmux 会话</span></span><br><span class="line">tmux a 						<span class="comment"># 恢复至上一次的会话</span></span><br><span class="line">tmux a -t foo 				<span class="comment"># 恢复名称为 foo 的会话，会话默认名称为数字</span></span><br><span class="line">tmux kill-session -t foo 	<span class="comment"># 删除名称为 foo 的会话</span></span><br><span class="line">tmux kill-server 			<span class="comment"># 删除所有的会话</span></span><br></pre></td></tr></table></figure>
+
+<p>在 tmux 会话中，使用<strong>前缀快捷键 ⌃b</strong> 配合以下快捷键可操作会话：</p>
+<ul>
+<li>$ 重命名当前会话</li>
+<li>s 选择会话列表</li>
+<li>d detach当前会话，运行后将会退出 tmux 进程，返回至 shell 主进程</li>
+</ul>
+</li>
+</ul>
+<p>以上快捷键参考：<a href="https://blog.csdn.net/BreakingDawn0/article/details/109266237">【Mac】Tmux技巧_mac tmux-CSDN博客</a></p>
+<h1 id="会话-窗口"><a href="#会话-窗口" class="headerlink" title="会话&amp;窗口"></a>会话&amp;窗口</h1><p>想要使用好tmux，需要理解会话和窗口之间的关系：</p>
+<p>在 <code>tmux</code> 中，会话和窗口有一个层次结构，它们之间的关系可以理解为：</p>
+<ol>
+<li><p><strong>会话（Session）</strong>：会话是 <code>tmux</code> 中的最高级别单元，它包含多个窗口。当你创建一个 <code>tmux</code> 会话时，你可以在这个会话中打开多个窗口，并且会话可以独立存在，即使你断开了连接，整个会话仍然保持后台运行，直到你重新连接。</p>
+</li>
+<li><p><strong>窗口（Window）</strong>：窗口是属于会话的，每个会话可以包含多个窗口。每个窗口相当于一个虚拟终端，可以运行不同的程序或任务。窗口可以在同一会话中的多个任务之间切换，且可以命名和操作独立的命令行环境。</p>
+</li>
+</ol>
+<p><strong>简单比喻：</strong></p>
+<p>可以将 <strong>会话</strong> 理解为一个工作区，而 <strong>窗口</strong> 相当于工作区中的不同桌面。每个窗口可以用于运行不同的任务，但它们都属于同一个工作区（会话）。你可以在不同的窗口之间切换而不离开当前会话。</p>
+<p><strong>具体例子：</strong></p>
+<ul>
+<li>假设你创建了一个 <code>tmux</code> 会话，并命名为 <code>mysession</code>。在这个会话中，你打开了两个窗口：<ul>
+<li><strong>窗口1</strong>：运行 <code>htop</code>，用于查看系统资源使用情况。</li>
+<li><strong>窗口2</strong>：运行 <code>vim</code>，用于编辑代码。</li>
+</ul>
+</li>
+</ul>
+<p>在这个会话中，你可以自由地在两个窗口之间切换。即使你断开了 <code>tmux</code> 会话（如通过 <code>Ctrl+b</code> 然后 <code>d</code>），当你重新连接到 <code>mysession</code> 时，这两个窗口仍然存在，并保持它们原来的状态。</p>
+<p><strong>总结：</strong></p>
+<ul>
+<li><strong>会话</strong> 是多个窗口的容器，用于将一组窗口组织在一起。</li>
+<li><strong>窗口</strong> 是属于会话的子单元，每个窗口可以运行不同的任务。</li>
+</ul>
+<p>因此，一个会话可以包含多个窗口，而每个窗口是相对独立的终端环境。</p>
+]]></content>
+      <categories>
+        <category>工具使用技巧</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>terminal</tag>
+        <tag>生产力</tag>
+      </tags>
+  </entry>
+</search>
